@@ -27,22 +27,22 @@ RUN yum -y makecache && yum -y install \
 RUN passwd -d apache; usermod --shell /bin/bash apache
 RUN scl enable rh-python36 'pip install -U pip' && \
     scl enable rh-python36 'pip3 install virtualenv virtualenvwrapper'
-COPY venv_poem.sh /etc/profile.d/
-COPY scl-psql.sh /etc/profile.d/
+COPY epel-7-poem/venv_poem.sh /etc/profile.d/
+COPY epel-7-poem/scl-psql.sh /etc/profile.d/
 RUN scl enable rh-python36 'source /etc/profile.d/venv_poem.sh; \
     mkdir -p $WORKON_HOME; \
     mkvirtualenv poem'
 WORKDIR /home/jenkins
 COPY \
-    fake-secret \
-    poem.conf \
-    poem-install.sh \
-    entrypoint.sh \
-    execute-backend-tests.sh \
-    execute-frontend-tests.sh \
+    epel-7-poem/fake-secret \
+    epel-7-poem/poem.conf \
+    epel-7-poem/poem-install.sh \
+    epel-7-poem/entrypoint.sh \
+    epel-7-poem/execute-backend-tests.sh \
+    epel-7-poem/execute-frontend-tests.sh \
     /home/jenkins/
-COPY apache/poem-apache.ini /etc/supervisord.d/
-COPY apache/poem.conf /opt/rh/httpd24/root/etc/httpd/conf.d/
+COPY epel-7-poem/apache/poem-apache.ini /etc/supervisord.d/
+COPY epel-7-poem/apache/poem.conf /opt/rh/httpd24/root/etc/httpd/conf.d/
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 USER jenkins
 ENTRYPOINT ["/home/jenkins/entrypoint.sh"]
