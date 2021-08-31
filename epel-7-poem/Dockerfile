@@ -2,7 +2,7 @@ FROM centos:7
 MAINTAINER dvrcic@srce.hr
 RUN groupadd jenkins -g 1000 && useradd -u 1000 -g 1000 jenkins -m -d /home/jenkins
 RUN passwd -d root
-RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash -
 RUN yum -y makecache; yum -y update; yum clean all
 RUN yum -y install epel-release && \
     yum -y install \
@@ -36,10 +36,7 @@ WORKDIR /home/jenkins
 COPY \
     epel-7-poem/fake-secret \
     epel-7-poem/poem.conf \
-    epel-7-poem/poem-install.sh \
     epel-7-poem/entrypoint.sh \
-    epel-7-poem/execute-backend-tests.sh \
-    epel-7-poem/execute-frontend-tests.sh \
     /home/jenkins/
 COPY epel-7-poem/apache/poem-apache.ini /etc/supervisord.d/
 COPY epel-7-poem/apache/poem.conf /opt/rh/httpd24/root/etc/httpd/conf.d/
