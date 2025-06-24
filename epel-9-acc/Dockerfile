@@ -29,7 +29,7 @@ ADD epel-9-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 ADD epel-9-ams/files/scripts/pyenv.sh /home/jenkins/
 RUN pip3 install -U pip setuptools==69.2.0
 RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun pyOpenSSL
-RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests
+RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests python3.12-devel python3.12-setuptools python3.12-requests
 RUN dnf -y install mock bc
 RUN dnf config-manager --set-enabled crb && dnf install -y \
     perl-generators \
@@ -65,6 +65,7 @@ RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.8' | tail -n1 | xar
 RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.9' | tail -n1 | xargs pyenv install
 RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.10' | tail -n1 | xargs pyenv install
 RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.11' | tail -n1 | xargs pyenv install
+RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.12' | tail -n1 | xargs pyenv install
 RUN source $HOME/pyenv.sh && pyenv local system
 RUN rm $HOME/.python-version
 USER root
