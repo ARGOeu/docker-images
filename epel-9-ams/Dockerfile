@@ -47,6 +47,7 @@ RUN dnf config-manager --set-enabled crb && dnf install -y \
     perl-Test-Pod \
     perl-Test-Pod-Coverage \
     perl-TimeDate
+RUN dnf -y install python3-wheel pyproject-rpm-macros
 RUN python3.9 -m venv /opt/poetry-tool/
 RUN sh -c '\
   . /opt/poetry-tool/bin/activate \
