@@ -1,0 +1,5 @@
+[epel]
+name=Extra Packages for Enterprise Linux 9 - $basearch
+baseurl=https://dl.fedoraproject.org/pub/epel/9/Everything/$basearch
+enabled=1
+gpgcheck=0
