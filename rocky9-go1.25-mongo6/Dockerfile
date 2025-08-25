@@ -5,7 +5,7 @@ RUN useradd -ms /bin/bash jenkins \
 
 
 RUN yum update -y && \
-    yum install -y wget tar gcc-c++ make git sudo rpm-build rpmdevtools  && \
+    yum install -y wget tar gcc-c++ make git sudo rpm-build rpmdevtools epel-release procps-ng checksec  && \
     yum clean all
 
 ENV GO_SRC=go1.25.0.linux-amd64.tar.gz
