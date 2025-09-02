@@ -3,10 +3,9 @@ FROM rockylinux:9
 RUN useradd -ms /bin/bash jenkins \
     && echo 'jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-COPY rocky9-go1.25/files/etc/epel.repo /etc/yum.repos.d/epel.repo
-
-RUN yum update -y && \
-    yum install -y wget tar gcc-c++ make git sudo rpm-build rpmdevtools procps-ng checksec && \
+RUN yum install epel-release -y && \
+    yum update -y && \
+    yum install -y wget tar gcc-c++ make git sudo rpm-build rpmdevtools procps-ng checksec  && \
     yum clean all
 
 ENV GO_SRC=go1.25.0.linux-amd64.tar.gz
